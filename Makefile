@@ -1,7 +1,9 @@
-obj-m += kit.o
+obj-m := kit.o
+KERNELDIR := /lib/modules/$(shell uname -r)/build
+PWD := $(shell pwd)
 
-all:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+default:
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
 
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
